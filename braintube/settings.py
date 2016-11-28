@@ -25,7 +25,7 @@ SECRET_KEY = '2m(q%#t&nyuzw6k-4!k@t%anxh_#u6nnqb9xhi2!g0uhfhpx!h'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'brainwave',
 ]
 
 MIDDLEWARE = [
