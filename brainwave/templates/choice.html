@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+  .header {
+    font-weight: 300;
+  }
+</style>
+<div class="container">
+  <h3 class="header">選擇你感興趣的影片類型</h3>
+  <div class="row">
+    <form class="col s12" action="/create_qrcode" method="post" id="choice-form">{% csrf_token %}
+      <div class="row">
+        <div class="input-field col s12">
+          <select multiple name="type">
+            <option value="" disabled selected>選擇影片類型</option>
+            <option value="1">動畫</option>
+            <option value="2">動作</option>
+            <option value="3">恐怖</option>
+            <option value="4">喜劇</option>
+            <option value="5">愛情</option>
+            <option value="6">科幻</option>
+          </select>
+          <label>影片類型</label>
+        </div>
+      </div>
+      <button type="submit" id="create_qr" class="btn btn-default">開始</button>
+    </form>
+  </div>
+</div>
+
+
+<script>
+$(document).ready(function() {
+  $('select').material_select();
+});
+</script>
+{% endblock %}
