@@ -88,3 +88,6 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# qr code svg
+brainwave/static/qr_code_svg
