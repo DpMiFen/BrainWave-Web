@@ -11,7 +11,15 @@
     <link rel="stylesheet" href="{% static 'assets/css/notosans.css' %}" />
 </head>
 <body>
-    {% block content %}
-    {% endblock %}
+  <nav>
+    <div class="nav-wrapper">
+      <a href="/" style="margin-left: 15px;" class="brand-logo">BrainTube</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="#">購買Sensor</a></li>
+      </ul>
+    </div>
+  </nav>
+  {% block content %}
+  {% endblock %}
 </body>
 </html>
