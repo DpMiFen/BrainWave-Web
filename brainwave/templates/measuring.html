@@ -4,16 +4,16 @@
 
 <div class="container">
   <h1>測量</h1>
-  <ul class="collection">
-    <li class="collection-item">使用APP掃描此QR Code
+  <ul class="collection with-header">
+    <li class="collection-item"><h4>使用APP掃描此QR Code</h4>
     {% load static %}
-    <img src="{% static svg_path %}" style="margin: 15px auto;"  width="300" height="300">
+    <img src="{% static svg_path %}" width="300" height="300">
     </img>
     </li>
-    <li class="collection-item">觀看影片</li>
+    <li class="collection-item"><h4>觀看影片</h4></li>
     <li class="collection-item">
       <a class="waves-effect waves-light btn" href="{{ result_path }}">
-        測量並傳送資料後按此連結</a>
+        測量並傳送資料後按此按鈕</a>
     </li>
   </ul>
 </div>
