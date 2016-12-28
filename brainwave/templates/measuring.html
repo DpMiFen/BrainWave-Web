@@ -2,6 +2,12 @@
 
 {% block content %}
 
+<style>
+h1, h2, h3, h4, h5 {
+  color: teal;
+}
+</style>
+
 <div class="container">
   <h1>測量</h1>
   <ul class="collection with-header">
@@ -10,7 +16,14 @@
     <img src="{% static svg_path %}" width="300" height="300">
     </img>
     </li>
-    <li class="collection-item"><h4>觀看影片</h4></li>
+    <li class="collection-item">
+      <h4>觀看影片</h4>
+      {% for link in youtube_links %}
+        <div class="video-container">
+          <iframe width="540" height="200" src="{{ link }}" frameborder="0" allowfullscreen></iframe>
+        </div>
+      {% endfor %}
+    </li>
     <li class="collection-item">
       <a class="waves-effect waves-light btn" href="{{ result_path }}">
         測量並傳送資料後按此按鈕</a>

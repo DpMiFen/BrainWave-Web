@@ -13,6 +13,15 @@ from .extra.analysis_wave import AnalysisWave
 
 aw = AnalysisWave()
 
+YOUTUBE_TABLE = {
+    '1': '//www.youtube.com/embed/h1J1gRw6cRc',
+    '2': '//www.youtube.com/embed/10ug1iSb074',
+    '3': '//www.youtube.com/embed/F6qX4HSWMTM',
+    '4': '//www.youtube.com/embed/AUKu_90PfHk',
+    '5': '//www.youtube.com/embed/JvbNt8iq6QQ',
+    '6': '//www.youtube.com/embed/UlWAGSgJfq0'
+}
+
 def index(request):
     template = loader.get_template('index.html')
     context = {
@@ -42,14 +51,17 @@ def choice(request):
     return render(request, 'choice.html', content)
 
 def create_qrcode(request):
-    content = { 'title': '開始測量' }
+    content = { 'title': '開始測量', 'youtube_links': [] }
     serial_num = random.randrange(10000, 99999)
-    # TODO: send the youtube
+
     factory = qrcode.image.svg.SvgFragmentImage
     svg = qrcode.make(serial_num, image_factory=factory)
     svg.save(f'brainwave/static/qr_code_svg/{serial_num}.svg')
 
-    content['tube_ids'] = request.POST.getlist('type')
+    youtube_ids = request.POST.getlist('type')
+    for id in youtube_ids:
+        content['youtube_links'].append(YOUTUBE_TABLE[id])
+
     content['svg_path'] = f'qr_code_svg/{serial_num}.svg'
     content['result_path'] = f'/analysis/{serial_num}'
 
