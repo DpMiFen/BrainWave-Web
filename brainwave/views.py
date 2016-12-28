@@ -31,8 +31,11 @@ def analysis(request, serial_num):
     else:
         content = { 'title': '結果' }
         # TODO: put result
-        # content['data'] = aw.wave_result[serial_num]
-        return render(request, 'result.html', content)
+        try:
+            content['data'] = aw.wave_result[serial_num]
+            return render(request, 'result.html', content)
+        except KeyError:
+            return render(request, 'opps.html')
 
 def choice(request):
     content = { 'title': '選擇影片類型' }
