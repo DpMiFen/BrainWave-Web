@@ -2,6 +2,16 @@
 
 {% block content %}
 
-<h1>123123123</h1>
-
+<div class="container">
+  <h1>測量</h1>
+  <ul class="collection">
+    <li class="collection-item">使用APP掃描此QR Code
+    {% load static %}
+    <img src="{% static svg_path %}" style="margin: 15px auto;"  width="300" height="300">
+    </img>
+    </li>
+    <li class="collection-item">觀看影片</li>
+    <li class="collection-item">結果查詢: <a href="{{ result_path }}">測量並傳送資料後按此連結</a></li>
+  </ul>
+</div>
 {% endblock %}

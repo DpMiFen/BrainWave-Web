@@ -40,13 +40,14 @@ def choice(request):
 
 def create_qrcode(request):
     content = { 'title': '開始測量' }
-    serial_num = random.randrange(1000, 99999)
-    # TODO: Create Qrcode and send the youtube
+    serial_num = random.randrange(10000, 99999)
+    # TODO: send the youtube
     factory = qrcode.image.svg.SvgFragmentImage
-    svg = qrcode.make('serial_num', image_factory=factory)
+    svg = qrcode.make(serial_num, image_factory=factory)
+    svg.save(f'brainwave/static/qr_code_svg/{serial_num}.svg')
 
-    content['qrcode_svg'] = svg
     content['tube_ids'] = request.POST.getlist('type')
-    print(type(svg))
+    content['svg_path'] = f'qr_code_svg/{serial_num}.svg'
+    content['result_path'] = f'/analysis/{serial_num}'
 
     return render(request, 'measuring.html', content)
