@@ -34,14 +34,17 @@ def analysis(request, serial_num):
     print(f'analysis:{serial_num}')
     if request.method == 'POST':
         raw_json = json.loads(request.body)
-        print(raw_json)
-        aw.analysis(serial_num, raw_json['rawData'])
+        aw.analysis(serial_num, raw_json)
         return JsonResponse({serial_num: 'OK'})
     else:
         content = { 'title': '結果' }
-        # TODO: put result
         try:
-            content['data'] = aw.wave_result[serial_num]
+            content['x_label'] = aw.get_times(serial_num)
+            content['a_data'] = aw.get_wave(serial_num, 0)
+            content['b_data'] = aw.get_wave(serial_num, 1)
+            content['y_data'] = aw.get_wave(serial_num, 2)
+            content['match'] = ["喜劇", "恐怖"]
+            content['unmatch'] = ["動畫", "科幻"]
             return render(request, 'result.html', content)
         except KeyError:
             return render(request, 'opps.html')
